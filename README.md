@@ -1,7 +1,8 @@
 # APP NAME HERE
 
 ## Authors
--Timothy Van Ness
+
+- Timothy Van Ness
 
 ## Purpose
 
