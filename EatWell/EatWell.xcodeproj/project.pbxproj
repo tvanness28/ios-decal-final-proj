@@ -1,0 +1,720 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A54722911DF7450000F5BDF1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54722901DF7450000F5BDF1 /* MainViewController.swift */; };
+		A547229B1DF794A000F5BDF1 /* pexels-photo-41123.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A547229A1DF794A000F5BDF1 /* pexels-photo-41123.jpg */; };
+		A547229F1DF799A800F5BDF1 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547229E1DF799A800F5BDF1 /* MainTableViewCell.swift */; };
+		A54722A31DF79FC700F5BDF1 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54722A21DF79FC700F5BDF1 /* MainTableViewController.swift */; };
+		A54722AB1DF7AC5100F5BDF1 /* FoodEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54722AA1DF7AC5100F5BDF1 /* FoodEditViewController.swift */; };
+		A54722AD1DF7D58100F5BDF1 /* FoodStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54722AC1DF7D58100F5BDF1 /* FoodStatsViewController.swift */; };
+		A54722BF1DF7DB9400F5BDF1 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54722B51DF7DA7B00F5BDF1 /* Charts.framework */; };
+		A54722C01DF7DB9400F5BDF1 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A54722B51DF7DA7B00F5BDF1 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A5D23F591DF8103F00838FAA /* RecipeEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D23F581DF8103F00838FAA /* RecipeEditViewController.swift */; };
+		A5D23F5D1DF8105500838FAA /* PlanEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D23F5C1DF8105500838FAA /* PlanEditViewController.swift */; };
+		A5D23F5F1DF8159E00838FAA /* SplashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = A5D23F5E1DF8159E00838FAA /* SplashScreen.png */; };
+		A5D23F611DF815A700838FAA /* SplashScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5D23F601DF815A700838FAA /* SplashScreen@2x.png */; };
+		A5D23F631DF815AE00838FAA /* SplashScreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5D23F621DF815AE00838FAA /* SplashScreen@3x.png */; };
+		A5D23F6B1DF8EA2200838FAA /* RecipeStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D23F6A1DF8EA2200838FAA /* RecipeStatsViewController.swift */; };
+		A5D23F6D1DF9072800838FAA /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D23F6C1DF9072800838FAA /* SearchTableViewController.swift */; };
+		A5E746911DF7412F0071BF65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E746901DF7412F0071BF65 /* AppDelegate.swift */; };
+		A5E746931DF7412F0071BF65 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E746921DF7412F0071BF65 /* LoginViewController.swift */; };
+		A5E746961DF7412F0071BF65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E746941DF7412F0071BF65 /* Main.storyboard */; };
+		A5E746991DF7412F0071BF65 /* EatWell.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A5E746971DF7412F0071BF65 /* EatWell.xcdatamodeld */; };
+		A5E7469B1DF7412F0071BF65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5E7469A1DF7412F0071BF65 /* Assets.xcassets */; };
+		A5E7469E1DF7412F0071BF65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E7469C1DF7412F0071BF65 /* LaunchScreen.storyboard */; };
+		A5E746A91DF7412F0071BF65 /* EatWellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E746A81DF7412F0071BF65 /* EatWellTests.swift */; };
+		A5E746B41DF7412F0071BF65 /* EatWellUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E746B31DF7412F0071BF65 /* EatWellUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A54722B41DF7DA7B00F5BDF1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A54722AE1DF7DA7B00F5BDF1 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06165F241D8110E600722320;
+			remoteInfo = Charts;
+		};
+		A54722B61DF7DA7B00F5BDF1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A54722AE1DF7DA7B00F5BDF1 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06B120D51D811E6200D14B02;
+			remoteInfo = ChartsRealm;
+		};
+		A54722B81DF7DA7B00F5BDF1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A54722AE1DF7DA7B00F5BDF1 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06165F2E1D8110E600722320;
+			remoteInfo = ChartsTests;
+		};
+		A54722C11DF7DB9400F5BDF1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A54722AE1DF7DA7B00F5BDF1 /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 06165F231D8110E600722320;
+			remoteInfo = Charts;
+		};
+		A5E746A51DF7412F0071BF65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5E746851DF7412F0071BF65 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A5E7468C1DF7412F0071BF65;
+			remoteInfo = EatWell;
+		};
+		A5E746B01DF7412F0071BF65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5E746851DF7412F0071BF65 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A5E7468C1DF7412F0071BF65;
+			remoteInfo = EatWell;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A54722C31DF7DB9400F5BDF1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A54722C01DF7DB9400F5BDF1 /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A54722901DF7450000F5BDF1 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = ../MainViewController.swift; sourceTree = "<group>"; };
+		A547229A1DF794A000F5BDF1 /* pexels-photo-41123.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "pexels-photo-41123.jpg"; sourceTree = "<group>"; };
+		A547229E1DF799A800F5BDF1 /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		A54722A21DF79FC700F5BDF1 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		A54722AA1DF7AC5100F5BDF1 /* FoodEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodEditViewController.swift; sourceTree = "<group>"; };
+		A54722AC1DF7D58100F5BDF1 /* FoodStatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodStatsViewController.swift; sourceTree = "<group>"; };
+		A54722AE1DF7DA7B00F5BDF1 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../ios-graph-test/Charts/Charts.xcodeproj"; sourceTree = "<group>"; };
+		A5D23F581DF8103F00838FAA /* RecipeEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeEditViewController.swift; sourceTree = "<group>"; };
+		A5D23F5C1DF8105500838FAA /* PlanEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanEditViewController.swift; sourceTree = "<group>"; };
+		A5D23F5E1DF8159E00838FAA /* SplashScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SplashScreen.png; sourceTree = "<group>"; };
+		A5D23F601DF815A700838FAA /* SplashScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SplashScreen@2x.png"; sourceTree = "<group>"; };
+		A5D23F621DF815AE00838FAA /* SplashScreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SplashScreen@3x.png"; sourceTree = "<group>"; };
+		A5D23F6A1DF8EA2200838FAA /* RecipeStatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeStatsViewController.swift; sourceTree = "<group>"; };
+		A5D23F6C1DF9072800838FAA /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		A5E7468D1DF7412F0071BF65 /* EatWell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EatWell.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5E746901DF7412F0071BF65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A5E746921DF7412F0071BF65 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A5E746951DF7412F0071BF65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A5E746981DF7412F0071BF65 /* EatWell.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EatWell.xcdatamodel; sourceTree = "<group>"; };
+		A5E7469A1DF7412F0071BF65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A5E7469D1DF7412F0071BF65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A5E7469F1DF7412F0071BF65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5E746A41DF7412F0071BF65 /* EatWellTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EatWellTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5E746A81DF7412F0071BF65 /* EatWellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EatWellTests.swift; sourceTree = "<group>"; };
+		A5E746AA1DF7412F0071BF65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5E746AF1DF7412F0071BF65 /* EatWellUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EatWellUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5E746B31DF7412F0071BF65 /* EatWellUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EatWellUITests.swift; sourceTree = "<group>"; };
+		A5E746B51DF7412F0071BF65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A5E7468A1DF7412F0071BF65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A54722BF1DF7DB9400F5BDF1 /* Charts.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5E746A11DF7412F0071BF65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5E746AC1DF7412F0071BF65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A547228D1DF7447600F5BDF1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A5E746971DF7412F0071BF65 /* EatWell.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		A547228E1DF7448100F5BDF1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A547229E1DF799A800F5BDF1 /* MainTableViewCell.swift */,
+				A5E7469A1DF7412F0071BF65 /* Assets.xcassets */,
+				A5D23F5E1DF8159E00838FAA /* SplashScreen.png */,
+				A5D23F601DF815A700838FAA /* SplashScreen@2x.png */,
+				A5D23F621DF815AE00838FAA /* SplashScreen@3x.png */,
+				A547229A1DF794A000F5BDF1 /* pexels-photo-41123.jpg */,
+				A5E7469C1DF7412F0071BF65 /* LaunchScreen.storyboard */,
+				A5E746941DF7412F0071BF65 /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		A547228F1DF7448600F5BDF1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A5E746921DF7412F0071BF65 /* LoginViewController.swift */,
+				A54722901DF7450000F5BDF1 /* MainViewController.swift */,
+				A54722A21DF79FC700F5BDF1 /* MainTableViewController.swift */,
+				A5D23F6C1DF9072800838FAA /* SearchTableViewController.swift */,
+				A54722AC1DF7D58100F5BDF1 /* FoodStatsViewController.swift */,
+				A5D23F6A1DF8EA2200838FAA /* RecipeStatsViewController.swift */,
+				A54722AA1DF7AC5100F5BDF1 /* FoodEditViewController.swift */,
+				A5D23F581DF8103F00838FAA /* RecipeEditViewController.swift */,
+				A5D23F5C1DF8105500838FAA /* PlanEditViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		A54722AF1DF7DA7B00F5BDF1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A54722B51DF7DA7B00F5BDF1 /* Charts.framework */,
+				A54722B71DF7DA7B00F5BDF1 /* ChartsRealm.framework */,
+				A54722B91DF7DA7B00F5BDF1 /* ChartsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A5E746841DF7412F0071BF65 = {
+			isa = PBXGroup;
+			children = (
+				A5E7468F1DF7412F0071BF65 /* EatWell */,
+				A5E746A71DF7412F0071BF65 /* EatWellTests */,
+				A5E746B21DF7412F0071BF65 /* EatWellUITests */,
+				A5E7468E1DF7412F0071BF65 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A5E7468E1DF7412F0071BF65 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A5E7468D1DF7412F0071BF65 /* EatWell.app */,
+				A5E746A41DF7412F0071BF65 /* EatWellTests.xctest */,
+				A5E746AF1DF7412F0071BF65 /* EatWellUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A5E7468F1DF7412F0071BF65 /* EatWell */ = {
+			isa = PBXGroup;
+			children = (
+				A547228D1DF7447600F5BDF1 /* Model */,
+				A547228E1DF7448100F5BDF1 /* View */,
+				A547228F1DF7448600F5BDF1 /* Controller */,
+				A5E746901DF7412F0071BF65 /* AppDelegate.swift */,
+				A54722AE1DF7DA7B00F5BDF1 /* Charts.xcodeproj */,
+				A5E7469F1DF7412F0071BF65 /* Info.plist */,
+			);
+			path = EatWell;
+			sourceTree = "<group>";
+		};
+		A5E746A71DF7412F0071BF65 /* EatWellTests */ = {
+			isa = PBXGroup;
+			children = (
+				A5E746A81DF7412F0071BF65 /* EatWellTests.swift */,
+				A5E746AA1DF7412F0071BF65 /* Info.plist */,
+			);
+			path = EatWellTests;
+			sourceTree = "<group>";
+		};
+		A5E746B21DF7412F0071BF65 /* EatWellUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A5E746B31DF7412F0071BF65 /* EatWellUITests.swift */,
+				A5E746B51DF7412F0071BF65 /* Info.plist */,
+			);
+			path = EatWellUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A5E7468C1DF7412F0071BF65 /* EatWell */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5E746B81DF7412F0071BF65 /* Build configuration list for PBXNativeTarget "EatWell" */;
+			buildPhases = (
+				A5E746891DF7412F0071BF65 /* Sources */,
+				A5E7468A1DF7412F0071BF65 /* Frameworks */,
+				A5E7468B1DF7412F0071BF65 /* Resources */,
+				A54722C31DF7DB9400F5BDF1 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A54722C21DF7DB9400F5BDF1 /* PBXTargetDependency */,
+			);
+			name = EatWell;
+			productName = EatWell;
+			productReference = A5E7468D1DF7412F0071BF65 /* EatWell.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A5E746A31DF7412F0071BF65 /* EatWellTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5E746BB1DF7412F0071BF65 /* Build configuration list for PBXNativeTarget "EatWellTests" */;
+			buildPhases = (
+				A5E746A01DF7412F0071BF65 /* Sources */,
+				A5E746A11DF7412F0071BF65 /* Frameworks */,
+				A5E746A21DF7412F0071BF65 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A5E746A61DF7412F0071BF65 /* PBXTargetDependency */,
+			);
+			name = EatWellTests;
+			productName = EatWellTests;
+			productReference = A5E746A41DF7412F0071BF65 /* EatWellTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A5E746AE1DF7412F0071BF65 /* EatWellUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5E746BE1DF7412F0071BF65 /* Build configuration list for PBXNativeTarget "EatWellUITests" */;
+			buildPhases = (
+				A5E746AB1DF7412F0071BF65 /* Sources */,
+				A5E746AC1DF7412F0071BF65 /* Frameworks */,
+				A5E746AD1DF7412F0071BF65 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A5E746B11DF7412F0071BF65 /* PBXTargetDependency */,
+			);
+			name = EatWellUITests;
+			productName = EatWellUITests;
+			productReference = A5E746AF1DF7412F0071BF65 /* EatWellUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A5E746851DF7412F0071BF65 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Timothy Van Ness";
+				TargetAttributes = {
+					A5E7468C1DF7412F0071BF65 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+					A5E746A31DF7412F0071BF65 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A5E7468C1DF7412F0071BF65;
+					};
+					A5E746AE1DF7412F0071BF65 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A5E7468C1DF7412F0071BF65;
+					};
+				};
+			};
+			buildConfigurationList = A5E746881DF7412F0071BF65 /* Build configuration list for PBXProject "EatWell" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A5E746841DF7412F0071BF65;
+			productRefGroup = A5E7468E1DF7412F0071BF65 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A54722AF1DF7DA7B00F5BDF1 /* Products */;
+					ProjectRef = A54722AE1DF7DA7B00F5BDF1 /* Charts.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				A5E7468C1DF7412F0071BF65 /* EatWell */,
+				A5E746A31DF7412F0071BF65 /* EatWellTests */,
+				A5E746AE1DF7412F0071BF65 /* EatWellUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		A54722B51DF7DA7B00F5BDF1 /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = A54722B41DF7DA7B00F5BDF1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A54722B71DF7DA7B00F5BDF1 /* ChartsRealm.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ChartsRealm.framework;
+			remoteRef = A54722B61DF7DA7B00F5BDF1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A54722B91DF7DA7B00F5BDF1 /* ChartsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ChartsTests.xctest;
+			remoteRef = A54722B81DF7DA7B00F5BDF1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A5E7468B1DF7412F0071BF65 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5E7469E1DF7412F0071BF65 /* LaunchScreen.storyboard in Resources */,
+				A5D23F611DF815A700838FAA /* SplashScreen@2x.png in Resources */,
+				A547229B1DF794A000F5BDF1 /* pexels-photo-41123.jpg in Resources */,
+				A5D23F5F1DF8159E00838FAA /* SplashScreen.png in Resources */,
+				A5D23F631DF815AE00838FAA /* SplashScreen@3x.png in Resources */,
+				A5E7469B1DF7412F0071BF65 /* Assets.xcassets in Resources */,
+				A5E746961DF7412F0071BF65 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5E746A21DF7412F0071BF65 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5E746AD1DF7412F0071BF65 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A5E746891DF7412F0071BF65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5E746931DF7412F0071BF65 /* LoginViewController.swift in Sources */,
+				A54722AB1DF7AC5100F5BDF1 /* FoodEditViewController.swift in Sources */,
+				A5E746911DF7412F0071BF65 /* AppDelegate.swift in Sources */,
+				A5D23F6B1DF8EA2200838FAA /* RecipeStatsViewController.swift in Sources */,
+				A5D23F5D1DF8105500838FAA /* PlanEditViewController.swift in Sources */,
+				A547229F1DF799A800F5BDF1 /* MainTableViewCell.swift in Sources */,
+				A5D23F591DF8103F00838FAA /* RecipeEditViewController.swift in Sources */,
+				A5D23F6D1DF9072800838FAA /* SearchTableViewController.swift in Sources */,
+				A54722A31DF79FC700F5BDF1 /* MainTableViewController.swift in Sources */,
+				A5E746991DF7412F0071BF65 /* EatWell.xcdatamodeld in Sources */,
+				A54722AD1DF7D58100F5BDF1 /* FoodStatsViewController.swift in Sources */,
+				A54722911DF7450000F5BDF1 /* MainViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5E746A01DF7412F0071BF65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5E746A91DF7412F0071BF65 /* EatWellTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5E746AB1DF7412F0071BF65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5E746B41DF7412F0071BF65 /* EatWellUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A54722C21DF7DB9400F5BDF1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Charts;
+			targetProxy = A54722C11DF7DB9400F5BDF1 /* PBXContainerItemProxy */;
+		};
+		A5E746A61DF7412F0071BF65 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A5E7468C1DF7412F0071BF65 /* EatWell */;
+			targetProxy = A5E746A51DF7412F0071BF65 /* PBXContainerItemProxy */;
+		};
+		A5E746B11DF7412F0071BF65 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A5E7468C1DF7412F0071BF65 /* EatWell */;
+			targetProxy = A5E746B01DF7412F0071BF65 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A5E746941DF7412F0071BF65 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5E746951DF7412F0071BF65 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A5E7469C1DF7412F0071BF65 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5E7469D1DF7412F0071BF65 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A5E746B61DF7412F0071BF65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A5E746B71DF7412F0071BF65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A5E746B91DF7412F0071BF65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = EatWell/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ios-decal.EatWell";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		A5E746BA1DF7412F0071BF65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = EatWell/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ios-decal.EatWell";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		A5E746BC1DF7412F0071BF65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = EatWellTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ios-decal.EatWellTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EatWell.app/EatWell";
+			};
+			name = Debug;
+		};
+		A5E746BD1DF7412F0071BF65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = EatWellTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ios-decal.EatWellTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EatWell.app/EatWell";
+			};
+			name = Release;
+		};
+		A5E746BF1DF7412F0071BF65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = EatWellUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ios-decal.EatWellUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = EatWell;
+			};
+			name = Debug;
+		};
+		A5E746C01DF7412F0071BF65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = EatWellUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ios-decal.EatWellUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = EatWell;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A5E746881DF7412F0071BF65 /* Build configuration list for PBXProject "EatWell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5E746B61DF7412F0071BF65 /* Debug */,
+				A5E746B71DF7412F0071BF65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5E746B81DF7412F0071BF65 /* Build configuration list for PBXNativeTarget "EatWell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5E746B91DF7412F0071BF65 /* Debug */,
+				A5E746BA1DF7412F0071BF65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5E746BB1DF7412F0071BF65 /* Build configuration list for PBXNativeTarget "EatWellTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5E746BC1DF7412F0071BF65 /* Debug */,
+				A5E746BD1DF7412F0071BF65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5E746BE1DF7412F0071BF65 /* Build configuration list for PBXNativeTarget "EatWellUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5E746BF1DF7412F0071BF65 /* Debug */,
+				A5E746C01DF7412F0071BF65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A5E746971DF7412F0071BF65 /* EatWell.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A5E746981DF7412F0071BF65 /* EatWell.xcdatamodel */,
+			);
+			currentVersion = A5E746981DF7412F0071BF65 /* EatWell.xcdatamodel */;
+			path = EatWell.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = A5E746851DF7412F0071BF65 /* Project object */;
+}
