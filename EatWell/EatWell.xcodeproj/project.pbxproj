@@ -11,17 +11,15 @@
 		A547229B1DF794A000F5BDF1 /* pexels-photo-41123.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A547229A1DF794A000F5BDF1 /* pexels-photo-41123.jpg */; };
 		A547229F1DF799A800F5BDF1 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547229E1DF799A800F5BDF1 /* MainTableViewCell.swift */; };
 		A54722A31DF79FC700F5BDF1 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54722A21DF79FC700F5BDF1 /* MainTableViewController.swift */; };
-		A54722AB1DF7AC5100F5BDF1 /* FoodEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54722AA1DF7AC5100F5BDF1 /* FoodEditViewController.swift */; };
 		A54722AD1DF7D58100F5BDF1 /* FoodStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54722AC1DF7D58100F5BDF1 /* FoodStatsViewController.swift */; };
 		A54722BF1DF7DB9400F5BDF1 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54722B51DF7DA7B00F5BDF1 /* Charts.framework */; };
 		A54722C01DF7DB9400F5BDF1 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A54722B51DF7DA7B00F5BDF1 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A5D23F591DF8103F00838FAA /* RecipeEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D23F581DF8103F00838FAA /* RecipeEditViewController.swift */; };
-		A5D23F5D1DF8105500838FAA /* PlanEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D23F5C1DF8105500838FAA /* PlanEditViewController.swift */; };
 		A5D23F5F1DF8159E00838FAA /* SplashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = A5D23F5E1DF8159E00838FAA /* SplashScreen.png */; };
 		A5D23F611DF815A700838FAA /* SplashScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5D23F601DF815A700838FAA /* SplashScreen@2x.png */; };
 		A5D23F631DF815AE00838FAA /* SplashScreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5D23F621DF815AE00838FAA /* SplashScreen@3x.png */; };
 		A5D23F6B1DF8EA2200838FAA /* RecipeStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D23F6A1DF8EA2200838FAA /* RecipeStatsViewController.swift */; };
 		A5D23F6D1DF9072800838FAA /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D23F6C1DF9072800838FAA /* SearchTableViewController.swift */; };
+		A5D23F6F1DF9280C00838FAA /* PlanStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D23F6E1DF9280C00838FAA /* PlanStatsViewController.swift */; };
 		A5E746911DF7412F0071BF65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E746901DF7412F0071BF65 /* AppDelegate.swift */; };
 		A5E746931DF7412F0071BF65 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E746921DF7412F0071BF65 /* LoginViewController.swift */; };
 		A5E746961DF7412F0071BF65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E746941DF7412F0071BF65 /* Main.storyboard */; };
@@ -96,16 +94,14 @@
 		A547229A1DF794A000F5BDF1 /* pexels-photo-41123.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "pexels-photo-41123.jpg"; sourceTree = "<group>"; };
 		A547229E1DF799A800F5BDF1 /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		A54722A21DF79FC700F5BDF1 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
-		A54722AA1DF7AC5100F5BDF1 /* FoodEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodEditViewController.swift; sourceTree = "<group>"; };
 		A54722AC1DF7D58100F5BDF1 /* FoodStatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodStatsViewController.swift; sourceTree = "<group>"; };
 		A54722AE1DF7DA7B00F5BDF1 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../ios-graph-test/Charts/Charts.xcodeproj"; sourceTree = "<group>"; };
-		A5D23F581DF8103F00838FAA /* RecipeEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeEditViewController.swift; sourceTree = "<group>"; };
-		A5D23F5C1DF8105500838FAA /* PlanEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanEditViewController.swift; sourceTree = "<group>"; };
 		A5D23F5E1DF8159E00838FAA /* SplashScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SplashScreen.png; sourceTree = "<group>"; };
 		A5D23F601DF815A700838FAA /* SplashScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SplashScreen@2x.png"; sourceTree = "<group>"; };
 		A5D23F621DF815AE00838FAA /* SplashScreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SplashScreen@3x.png"; sourceTree = "<group>"; };
 		A5D23F6A1DF8EA2200838FAA /* RecipeStatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeStatsViewController.swift; sourceTree = "<group>"; };
 		A5D23F6C1DF9072800838FAA /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		A5D23F6E1DF9280C00838FAA /* PlanStatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlanStatsViewController.swift; path = ../PlanStatsViewController.swift; sourceTree = "<group>"; };
 		A5E7468D1DF7412F0071BF65 /* EatWell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EatWell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5E746901DF7412F0071BF65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5E746921DF7412F0071BF65 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -180,9 +176,7 @@
 				A5D23F6C1DF9072800838FAA /* SearchTableViewController.swift */,
 				A54722AC1DF7D58100F5BDF1 /* FoodStatsViewController.swift */,
 				A5D23F6A1DF8EA2200838FAA /* RecipeStatsViewController.swift */,
-				A54722AA1DF7AC5100F5BDF1 /* FoodEditViewController.swift */,
-				A5D23F581DF8103F00838FAA /* RecipeEditViewController.swift */,
-				A5D23F5C1DF8105500838FAA /* PlanEditViewController.swift */,
+				A5D23F6E1DF9280C00838FAA /* PlanStatsViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -419,15 +413,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5E746931DF7412F0071BF65 /* LoginViewController.swift in Sources */,
-				A54722AB1DF7AC5100F5BDF1 /* FoodEditViewController.swift in Sources */,
 				A5E746911DF7412F0071BF65 /* AppDelegate.swift in Sources */,
 				A5D23F6B1DF8EA2200838FAA /* RecipeStatsViewController.swift in Sources */,
-				A5D23F5D1DF8105500838FAA /* PlanEditViewController.swift in Sources */,
 				A547229F1DF799A800F5BDF1 /* MainTableViewCell.swift in Sources */,
-				A5D23F591DF8103F00838FAA /* RecipeEditViewController.swift in Sources */,
 				A5D23F6D1DF9072800838FAA /* SearchTableViewController.swift in Sources */,
 				A54722A31DF79FC700F5BDF1 /* MainTableViewController.swift in Sources */,
 				A5E746991DF7412F0071BF65 /* EatWell.xcdatamodeld in Sources */,
+				A5D23F6F1DF9280C00838FAA /* PlanStatsViewController.swift in Sources */,
 				A54722AD1DF7D58100F5BDF1 /* FoodStatsViewController.swift in Sources */,
 				A54722911DF7450000F5BDF1 /* MainViewController.swift in Sources */,
 			);

@@ -177,6 +177,8 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     func addPressed(_sender: UIButton!) {
         switch MainTableViewController.segCont_index {
         case 0:
+            PlanStatsViewController.plan = nil
+            self.navigationController?.pushViewController(PlanStatsViewController(), animated: true)
             break
         case 1:
             RecipeStatsViewController.recipe = nil
@@ -220,6 +222,8 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
                 let plan = plans[indexPath.row]
                 cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? MainTableViewCell
                 cell?.label.text = plan.name
+                cell?.calLabel.text = String(format: "~%.1f C/day", plan.cpd)
+                setBarData(plan.protein, plan.carbs, plan.fat, cell)
             }
             break
         case 1:
@@ -254,6 +258,8 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         case 0:
             if (plans.count > 0) {
                 let plan = plans[indexPath.row]
+                PlanStatsViewController.plan = plan
+                self.navigationController?.pushViewController(PlanStatsViewController(), animated: true)
             }
             break
         case 1:

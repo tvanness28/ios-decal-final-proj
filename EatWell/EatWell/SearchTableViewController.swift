@@ -13,6 +13,7 @@ import CoreData
 protocol SearchViewControllerDelegate
 {
     func searchViewControllerResponse(food: Food!)
+    func searchViewControllerResponse(recipe: Recipe!)
 }
 
 class SearchTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -266,9 +267,8 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
         case 1:
             if (recipes.count > 0) {
                 let recipe = recipes[indexPath.row]
-                RecipeStatsViewController.recipe = recipe
-                self.navigationController?.pushViewController(RecipeStatsViewController(), animated: true)
-            }
+                self.delegate?.searchViewControllerResponse(recipe: recipe)
+                self.navigationController?.popViewController(animated: true)            }
             break
         case 2:
             if (foods.count > 0) {

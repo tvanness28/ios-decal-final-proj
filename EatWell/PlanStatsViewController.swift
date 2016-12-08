@@ -1,5 +1,5 @@
 //
-//  RecipeStatsViewController.swift
+//  PlanStatsViewController.swift
 //  EatWell
 //
 //  Created by Timothy Van Ness on 12/6/16.
@@ -10,10 +10,10 @@ import UIKit
 import CoreData
 import Charts
 
-class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SearchViewControllerDelegate {
+class PlanStatsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SearchViewControllerDelegate {
     
-    static var recipe: Recipe? = nil
-    var add_food: Food? = nil
+    static var plan: Plan? = nil
+    var add_recipe: Recipe? = nil
     
     var pieChart = PieChartView()
     let stat_names = ["Protein","Carbs","Fat"]
@@ -24,8 +24,8 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
     var views: [UIView] = []
     var labels: [UILabel] = []
     var tfs: [UITextField] = []
-    var placeholders = ["0","Servings", "0", "0", "0"]
-    var units = ["C ","Servings ","g "]
+    var placeholders = ["0","Days", "0", "0", "0"]
+    var units = ["C ","Days ","g "]
     
     var calView = UIView()
     var calLabel = UILabel()
@@ -49,13 +49,13 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
     
     var editNameView = UITextField()
     
-    var ingredientsView = UILabel()
+    var mealsView = UILabel()
     
     var addButton: UIButton!
     
-    var ingredientsTableView = UITableView()
+    var mealsTableView = UITableView()
     
-    var foods: [Food] = []
+    var recipes: [Recipe] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,24 +70,24 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
         
         pieChart.noDataText = "No Data for graph"
         
-        findRecipe()
+        findPlan()
         
         setData()
         
         setViews()
         
-        ingredientsTableView.delegate = self
-        ingredientsTableView.dataSource = self
-        ingredientsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        ingredientsTableView.tableFooterView = UIView()
-        ingredientsTableView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(ingredientsTableView)
+        mealsTableView.delegate = self
+        mealsTableView.dataSource = self
+        mealsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        mealsTableView.tableFooterView = UIView()
+        mealsTableView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(mealsTableView)
         
-        ingredientsTableView.topAnchor.constraint(equalTo: ingredientsView.bottomAnchor).isActive = true
-        ingredientsTableView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        ingredientsTableView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/3).isActive = true
-
-        if RecipeStatsViewController.recipe == nil {
+        mealsTableView.topAnchor.constraint(equalTo: mealsView.bottomAnchor).isActive = true
+        mealsTableView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        mealsTableView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/3).isActive = true
+        
+        if PlanStatsViewController.plan == nil {
             editTapped()
         }
         
@@ -108,22 +108,22 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
         setData()
     }
     
-    func searchViewControllerResponse(food: Food!)
+    func searchViewControllerResponse(recipe: Recipe!)
     {
-        self.add_food = food
-        if let food = self.add_food {
-            foods.append(food)
-            tfs[0].text = String(Int(tfs[0].text!)! + food.calories)
-            tfs[2].text = String(Float(tfs[2].text!)! + food.protein)
-            tfs[3].text = String(Float(tfs[3].text!)! + food.carbs)
-            tfs[4].text = String(Float(tfs[4].text!)! + food.fat)
+        self.add_recipe = recipe
+        if let recipe = self.add_recipe {
+            recipes.append(recipe)
+            tfs[0].text = String(Int(tfs[0].text!)! + recipe.calories)
+            tfs[2].text = String(Float(tfs[2].text!)! + recipe.protein)
+            tfs[3].text = String(Float(tfs[3].text!)! + recipe.carbs)
+            tfs[4].text = String(Float(tfs[4].text!)! + recipe.fat)
         }
-        findRecipe()
+        findPlan()
         setData()
-        ingredientsTableView.reloadData()
+        mealsTableView.reloadData()
     }
     
-    func searchViewControllerResponse(recipe: Recipe!) {
+    func searchViewControllerResponse(food: Food!) {
         
     }
     
@@ -191,52 +191,52 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
             tfs[4].text = "0"
         }
         
-        if let recipe = RecipeStatsViewController.recipe {
-            navigationItem.title = recipe.name
-    
-            if let recp_ingredients = recipe.ingredients {
-                foods = recp_ingredients.allObjects as! [Food]
+        if let plan = PlanStatsViewController.plan {
+            navigationItem.title = plan.name
+            
+            if let recp_meals = plan.meals {
+                recipes = recp_meals.allObjects as! [Recipe]
             }
             
             tfs[1].isEnabled = false
             tfs[1].isHighlighted = false
             
-            tfs[0].text = String(recipe.calories)
-            tfs[1].text = String(recipe.servings)
-            tfs[2].text = String(recipe.protein)
-            tfs[3].text = String(recipe.carbs)
-            tfs[4].text = String(recipe.fat)
+            tfs[0].text = String(plan.calories)
+            tfs[1].text = String(plan.days)
+            tfs[2].text = String(plan.protein)
+            tfs[3].text = String(plan.carbs)
+            tfs[4].text = String(plan.fat)
         }
         
-        ingredientsView.text = " Ingredients"
-        ingredientsView.font = UIFont.boldSystemFont(ofSize: 18)
-        ingredientsView.textAlignment = .left
-        ingredientsView.backgroundColor = UIColor(red:0.63, green:0.45, blue:0.64, alpha:1.0)
-        ingredientsView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(ingredientsView)
+        mealsView.text = " Meals"
+        mealsView.font = UIFont.boldSystemFont(ofSize: 18)
+        mealsView.textAlignment = .left
+        mealsView.backgroundColor = UIColor(red:0.63, green:0.45, blue:0.64, alpha:1.0)
+        mealsView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(mealsView)
         
-        ingredientsView.topAnchor.constraint(equalTo: tfs[4].bottomAnchor, constant: 10).isActive = true
-        ingredientsView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        ingredientsView.heightAnchor.constraint(equalToConstant: self.view.frame.height/20).isActive = true
-        ingredientsView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        mealsView.topAnchor.constraint(equalTo: tfs[4].bottomAnchor, constant: 10).isActive = true
+        mealsView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        mealsView.heightAnchor.constraint(equalToConstant: self.view.frame.height/20).isActive = true
+        mealsView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         
         
     }
     
-    func findRecipe() {
-        if let recipe = RecipeStatsViewController.recipe {
+    func findPlan() {
+        if let plan = PlanStatsViewController.plan {
             let appDel = UIApplication.shared.delegate as! AppDelegate
             let managedContext = appDel.persistentContainer.viewContext
-            managedContext.refresh(recipe, mergeChanges: true)
-            RecipeStatsViewController.recipe = recipe
+            managedContext.refresh(plan, mergeChanges: true)
+            PlanStatsViewController.plan = plan
         }
     }
     
     func setData () {
-        if let recipe = RecipeStatsViewController.recipe {
-            navigationItem.title = recipe.name
-            let total_macros = recipe.carbs + recipe.protein + recipe.fat
-            var percents: [Double] = [Double(recipe.protein / total_macros), Double(recipe.carbs / total_macros), Double(recipe.fat / total_macros)]
+        if let plan = PlanStatsViewController.plan {
+            navigationItem.title = plan.name
+            let total_macros = plan.carbs + plan.protein + plan.fat
+            var percents: [Double] = [Double(plan.protein / total_macros), Double(plan.carbs / total_macros), Double(plan.fat / total_macros)]
             
             var stats_vals: [PieChartDataEntry] = []
             var data_colors: [UIColor] = []
@@ -270,7 +270,7 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
     func editTapped() {
         tfs[1].isEnabled = true
         tfs[1].isHighlighted = true
-
+        
         editNameView.frame = CGRect(x: 0, y: 0, width: (self.navigationController?.navigationBar.frame.size.width)!/2, height: 21.0)
         editNameView.placeholder = "Name"
         editNameView.textColor = UIColor(red:0.63, green:0.45, blue:0.64, alpha:1.0)
@@ -280,8 +280,8 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
         editNameView.layer.borderColor = UIColor(red:0.63, green:0.45, blue:0.64, alpha:1.0).cgColor
         editNameView.layer.cornerRadius = 5
         editNameView.textAlignment = .center
-        if let recipe = RecipeStatsViewController.recipe {
-            editNameView.text = recipe.name
+        if let plan = PlanStatsViewController.plan {
+            editNameView.text = plan.name
         }
         navigationItem.titleView = editNameView
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneTapped))
@@ -293,12 +293,12 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
         addButton.tag = 3
         self.view.addSubview(addButton)
         
-        addButton.centerYAnchor.constraint(equalTo: ingredientsView.centerYAnchor).isActive = true
-        addButton.trailingAnchor.constraint(equalTo: ingredientsView.trailingAnchor, constant: -5).isActive = true
+        addButton.centerYAnchor.constraint(equalTo: mealsView.centerYAnchor).isActive = true
+        addButton.trailingAnchor.constraint(equalTo: mealsView.trailingAnchor, constant: -5).isActive = true
     }
     
     func addPressed() {
-        SearchTableViewController.searchIndex = 2
+        SearchTableViewController.searchIndex = 1
         let searchVC = SearchTableViewController()
         searchVC.delegate = self
         self.navigationController?.pushViewController(searchVC, animated: true)
@@ -319,50 +319,50 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
         
-        if editNameView.text == "" || foods.count == 0 {
+        if editNameView.text == "" || recipes.count == 0 {
             success = false
         }
-                
+        
         if success {
-            var changing_recipe: Recipe
+            var changing_plan: Plan
             let appDel = UIApplication.shared.delegate as! AppDelegate
             let managedContext = appDel.persistentContainer.viewContext
-            if RecipeStatsViewController.recipe == nil {
-                let entity = NSEntityDescription.entity(forEntityName: "Recipe", in: managedContext)
-                changing_recipe = NSManagedObject(entity: entity!, insertInto: managedContext) as! Recipe
+            if PlanStatsViewController.plan == nil {
+                let entity = NSEntityDescription.entity(forEntityName: "Plan", in: managedContext)
+                changing_plan = NSManagedObject(entity: entity!, insertInto: managedContext) as! Plan
             } else {
-                changing_recipe = RecipeStatsViewController.recipe!
+                changing_plan = PlanStatsViewController.plan!
             }
-            changing_recipe.name = editNameView.text
-            changing_recipe.calories = Int32(vals[0]) ?? 0
-            changing_recipe.servings = Int32(vals[1]) ?? 1
-            changing_recipe.protein = Float(vals[2]) ?? 0
-            changing_recipe.carbs = Float(vals[3]) ?? 0
-            changing_recipe.fat = Float(vals[4]) ?? 0
-            changing_recipe.cps = Float(changing_recipe.calories) / Float(changing_recipe.servings)
-            let ingredients = changing_recipe.mutableSetValue(forKey: "ingredients")
-            for food in foods {
-                ingredients.add(food)
+            changing_plan.name = editNameView.text
+            changing_plan.calories = Int32(vals[0]) ?? 0
+            changing_plan.days = Int32(vals[1]) ?? 1
+            changing_plan.protein = Float(vals[2]) ?? 0
+            changing_plan.carbs = Float(vals[3]) ?? 0
+            changing_plan.fat = Float(vals[4]) ?? 0
+            changing_plan.cpd = Float(changing_plan.calories) / Float(changing_plan.days)
+            let meals = changing_plan.mutableSetValue(forKey: "meals")
+            for recipe in recipes {
+                meals.add(recipe)
             }
             do {
                 try managedContext.save()
             } catch {
                 fatalError("Failed to save new values: \(error)")
             }
-            RecipeStatsViewController.recipe = changing_recipe
+            PlanStatsViewController.plan = changing_plan
             navigationItem.titleView = nil
-            navigationItem.title = changing_recipe.name
+            navigationItem.title = changing_plan.name
             
             tfs[1].isEnabled = false
             tfs[1].isHighlighted = false
             
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
             
-            if let viewWithTag = ingredientsView.viewWithTag(3) {
+            if let viewWithTag = mealsView.viewWithTag(3) {
                 viewWithTag.removeFromSuperview()
             }
             
-            findRecipe()
+            findPlan()
             
             setData()
             setViews()
@@ -377,12 +377,12 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return foods.count
+        return recipes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = foods[indexPath.row].name
+        cell.textLabel?.text = recipes[indexPath.row].name
         return cell
     }
     
@@ -395,33 +395,33 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
         let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
             let appDel = UIApplication.shared.delegate as! AppDelegate
             let managedContext = appDel.persistentContainer.viewContext
-            let food = self.foods[indexPath.row]
-            self.foods.remove(at: indexPath.row)
+            let recipe = self.recipes[indexPath.row]
+            self.recipes.remove(at: indexPath.row)
             let cur_cal = Int(self.tfs[0].text!)
-            self.tfs[0].text = String(Int(cur_cal!) - Int(food.calories))
-            self.tfs[2].text = String(Float(self.tfs[2].text!)! - food.protein)
-            self.tfs[3].text = String(Float(self.tfs[3].text!)! - food.carbs)
-            self.tfs[4].text = String(Float(self.tfs[4].text!)! - food.fat)
-            if let changing_recipe = RecipeStatsViewController.recipe {
-                changing_recipe.calories = Int32(self.tfs[0].text!)!
-                changing_recipe.protein = Float(self.tfs[2].text!)!
-                changing_recipe.carbs = Float(self.tfs[3].text!)!
-                changing_recipe.fat = Float(self.tfs[4].text!)!
-                changing_recipe.cps = Float(changing_recipe.calories) / Float(changing_recipe.servings)
-                let ingredients = changing_recipe.mutableSetValue(forKeyPath: "ingredients")
-                ingredients.remove(food)
+            self.tfs[0].text = String(Int(cur_cal!) - Int(recipe.calories))
+            self.tfs[2].text = String(Float(self.tfs[2].text!)! - recipe.protein)
+            self.tfs[3].text = String(Float(self.tfs[3].text!)! - recipe.carbs)
+            self.tfs[4].text = String(Float(self.tfs[4].text!)! - recipe.fat)
+            if let changing_plan = PlanStatsViewController.plan {
+                changing_plan.calories = Int32(self.tfs[0].text!)!
+                changing_plan.protein = Float(self.tfs[2].text!)!
+                changing_plan.carbs = Float(self.tfs[3].text!)!
+                changing_plan.fat = Float(self.tfs[4].text!)!
+                changing_plan.cpd = Float(changing_plan.calories) / Float(changing_plan.days)
+                let meals = changing_plan.mutableSetValue(forKeyPath: "meals")
+                meals.remove(recipe)
                 do {
                     try managedContext.save()
                 } catch {
                     fatalError("Failed to delete relationship: \(error)")
                 }
             }
-            self.findRecipe()
-            self.ingredientsTableView.reloadData()
+            self.findPlan()
+            self.mealsTableView.reloadData()
         }
         delete.backgroundColor = UIColor.red
         return [delete]
     }
-
+    
     
 }
