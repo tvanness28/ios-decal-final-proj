@@ -15,10 +15,11 @@ class LoginViewController: UIViewController {
     var titleBlock = UIView()
     var loginBlock = UIView()
     var eatWellLabel = UILabel()
-    var tempButton = UIButton(type: UIButtonType.system)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let _ = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(exitSplash), userInfo: nil, repeats: false)
         
         self.navigationController?.navigationBar.isHidden = true
 
@@ -26,14 +27,6 @@ class LoginViewController: UIViewController {
         splashImage.frame = CGRect(x: 0, y: 0, width: screen.width, height: screen.height)
         
         self.view.addSubview(splashImage)
-        
-        tempButton.setTitle("Start", for: UIControlState.normal)
-        tempButton.addTarget(self, action: #selector(startPressed), for: .touchUpInside)
-        self.view.addSubview(tempButton)
-        tempButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        tempButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        tempButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,7 +34,7 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func startPressed() {
+    func exitSplash() {
         self.navigationController?.pushViewController(MainViewController(), animated: true)
     }
 

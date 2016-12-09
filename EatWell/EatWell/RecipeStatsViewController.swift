@@ -55,7 +55,18 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
     
     var ingredientsTableView = UITableView()
     
+    var recipe_ingreds: [RecipeIngredient] = []
+    
     var foods: [Food] = []
+    var food_amounts: [Float] = []
+
+    var isEditTapped: Bool = false
+    
+    var init_graph: Bool = true
+    
+    class subclassedUITextField: UITextField {
+        var index: Int!
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +84,7 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
         findRecipe()
         
         setData()
+        init_graph = false
         
         setViews()
         
@@ -108,11 +120,24 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
         setData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
     func searchViewControllerResponse(food: Food!)
     {
         self.add_food = food
         if let food = self.add_food {
             foods.append(food)
+            food_amounts.append(food.weight)
+            let r_i: RecipeIngredient
+            let appDel = UIApplication.shared.delegate as! AppDelegate
+            let managedContext = appDel.persistentContainer.viewContext
+            let entity = NSEntityDescription.entity(forEntityName: "RecipeIngredient", in: managedContext)
+            r_i = NSManagedObject(entity: entity!, insertInto: managedContext) as! RecipeIngredient
+            r_i.amount = food.weight
+            r_i.ingredient = food
+            recipe_ingreds.append(r_i)
             tfs[0].text = String(Int(tfs[0].text!)! + food.calories)
             tfs[2].text = String(Float(tfs[2].text!)! + food.protein)
             tfs[3].text = String(Float(tfs[3].text!)! + food.carbs)
@@ -194,8 +219,14 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
         if let recipe = RecipeStatsViewController.recipe {
             navigationItem.title = recipe.name
     
-            if let recp_ingredients = recipe.ingredients {
-                foods = recp_ingredients.allObjects as! [Food]
+            if let recp_ingredients = recipe.recipeingredients {
+                foods = []
+                food_amounts = []
+                recipe_ingreds = recp_ingredients.allObjects as! [RecipeIngredient]
+                for recipe_ingred in recipe_ingreds {
+                    foods.append(recipe_ingred.ingredient!)
+                    food_amounts.append(recipe_ingred.amount)
+                }
             }
             
             tfs[1].isEnabled = false
@@ -256,7 +287,9 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
             pieChart.usePercentValuesEnabled = true
             pieChart.drawHoleEnabled = false
             pieChart.chartDescription = nil
-            pieChart.animate(xAxisDuration: 1.5, yAxisDuration: 1.5, easingOption: ChartEasingOption.easeOutExpo)
+//            if init_graph {
+                pieChart.animate(xAxisDuration: 1.5, yAxisDuration: 1.5, easingOption: ChartEasingOption.easeOutExpo)
+//            }
         }
         
         self.view.addSubview(pieChart)
@@ -295,6 +328,9 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
         
         addButton.centerYAnchor.constraint(equalTo: ingredientsView.centerYAnchor).isActive = true
         addButton.trailingAnchor.constraint(equalTo: ingredientsView.trailingAnchor, constant: -5).isActive = true
+        
+        isEditTapped = true
+        ingredientsTableView.reloadData()
     }
     
     func addPressed() {
@@ -319,7 +355,7 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
         
-        if editNameView.text == "" || foods.count == 0 {
+        if editNameView.text == "" || recipe_ingreds.count == 0 {
             success = false
         }
                 
@@ -334,15 +370,19 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
                 changing_recipe = RecipeStatsViewController.recipe!
             }
             changing_recipe.name = editNameView.text
-            changing_recipe.calories = Int32(vals[0]) ?? 0
-            changing_recipe.servings = Int32(vals[1]) ?? 1
+            changing_recipe.calories = Int32(vals[0])  ?? 0
+            changing_recipe.servings = Float(vals[1]) ?? 1
             changing_recipe.protein = Float(vals[2]) ?? 0
             changing_recipe.carbs = Float(vals[3]) ?? 0
             changing_recipe.fat = Float(vals[4]) ?? 0
             changing_recipe.cps = Float(changing_recipe.calories) / Float(changing_recipe.servings)
-            let ingredients = changing_recipe.mutableSetValue(forKey: "ingredients")
-            for food in foods {
-                ingredients.add(food)
+            let ingredients = changing_recipe.mutableSetValue(forKey: "recipeingredients")
+            print(foods.count)
+            print(recipe_ingreds.count)
+            for i in 0...foods.count-1 {
+                recipe_ingreds[i].amount = food_amounts[i]
+                recipe_ingreds[i].ingredient = foods[i]
+                ingredients.add(recipe_ingreds[i])
             }
             do {
                 try managedContext.save()
@@ -366,6 +406,8 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
             
             setData()
             setViews()
+            isEditTapped = false
+            ingredientsTableView.reloadData()
         }
         
     }
@@ -382,8 +424,107 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        
+//        let amount = UILabel()
+//        amount.text = String(format: "%.1f g", food_amounts[indexPath.row])
+//        amount.tag = 6
+//        amount.translatesAutoresizingMaskIntoConstraints = false
+//        cell.addSubview(amount)
+//        
+//        amount.trailingAnchor.constraint(equalTo: cell.trailingAnchor, constant: -5).isActive = true
+//        amount.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
+        
+        if isEditTapped {
+            if let viewWithTag = cell.viewWithTag(6) {
+                viewWithTag.removeFromSuperview()
+            }
+            
+            let amountTF = subclassedUITextField()
+            amountTF.placeholder = "0.0"
+            amountTF.tag = 5
+            if indexPath.row < food_amounts.count {
+                amountTF.text = String(format: "%.1f", food_amounts[indexPath.row])
+            }
+            let gramLabel = UILabel()
+            gramLabel.text = " g"
+            cell.addSubview(gramLabel)
+            amountTF.rightView = gramLabel
+            amountTF.textAlignment = .right
+            amountTF.rightViewMode = UITextFieldViewMode.always
+            amountTF.borderStyle = UITextBorderStyle.roundedRect
+            amountTF.adjustsFontSizeToFitWidth = true
+            amountTF.layer.borderWidth = 1
+            amountTF.layer.borderColor = UIColor(red:0.63, green:0.45, blue:0.64, alpha:1.0).cgColor
+            amountTF.layer.cornerRadius = 5
+            amountTF.keyboardType = UIKeyboardType.decimalPad
+            amountTF.addTarget(self, action: #selector(amountChanged), for: .editingDidEnd)
+            amountTF.index = indexPath.row
+            amountTF.translatesAutoresizingMaskIntoConstraints = false
+            cell.addSubview(amountTF)
+            
+            amountTF.trailingAnchor.constraint(equalTo: cell.trailingAnchor, constant: -5).isActive = true
+            amountTF.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
+//            let stepper = subclassedUIStepper()
+//            stepper.autorepeat = true
+//            stepper.index = indexPath.row
+//            stepper.cell = cell
+//            stepper.tag = 5
+//            stepper.stepValue = 0.1
+//            stepper.value = Double(food_amounts[indexPath.row])
+//            stepper.translatesAutoresizingMaskIntoConstraints = false
+//            stepper.addTarget(self, action: #selector(stepperValueChanged), for: UIControlEvents.allTouchEvents)
+//            cell.addSubview(stepper)
+//        
+//            stepper.trailingAnchor.constraint(equalTo: amount.leadingAnchor, constant: -5).isActive = true
+//            stepper.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
+        } else {
+            if let viewWithTag = cell.viewWithTag(5) {
+                viewWithTag.removeFromSuperview()
+            }
+
+            let amount = UILabel()
+            amount.text = String(format: "%.1f g", food_amounts[indexPath.row])
+            amount.tag = 6
+            amount.translatesAutoresizingMaskIntoConstraints = false
+            cell.addSubview(amount)
+            
+            amount.trailingAnchor.constraint(equalTo: cell.trailingAnchor, constant: -5).isActive = true
+            amount.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
+        }
+        
         cell.textLabel?.text = foods[indexPath.row].name
+        
         return cell
+    }
+    
+    func amountChanged(sender: subclassedUITextField) {
+        if let new_amount = sender.text {
+//            label.text = String(format: "%.1f g", Double(sender.value).description)
+            food_amounts[(sender.index)!] = Float(new_amount)!
+        
+        
+            var cur_cals: Float = 0.0
+            var cur_prot: Float = 0.0
+            var cur_carbs: Float = 0.0
+            var cur_fat: Float = 0.0
+            for i in 0...foods.count - 1 {
+                let food = foods[i]
+                let food_amount = food_amounts[i]
+                cur_cals += (Float(food.calories) * food_amount) / food.weight
+                cur_prot += (food.protein * food_amount) / food.weight
+                cur_carbs += (food.carbs * food_amount) / food.weight
+                cur_fat += (food.fat * food_amount) / food.weight
+            }
+            tfs[0].text = String(format: "%.0f", cur_cals)
+            tfs[2].text = String(format: "%.1f", cur_prot)
+            tfs[3].text = String(format: "%.1f", cur_carbs)
+            tfs[4].text = String(format: "%.1f", cur_fat)
+        
+            setData()
+        }
+        sender.endEditing(true)
     }
     
     
@@ -397,19 +538,23 @@ class RecipeStatsViewController: UIViewController, UITableViewDelegate, UITableV
             let managedContext = appDel.persistentContainer.viewContext
             let food = self.foods[indexPath.row]
             self.foods.remove(at: indexPath.row)
+            let food_amount = self.food_amounts[indexPath.row]
+            self.food_amounts.remove(at: indexPath.row)
+            let recp_ingrd = self.recipe_ingreds[indexPath.row]
+            self.recipe_ingreds.remove(at: indexPath.row)
             let cur_cal = Int(self.tfs[0].text!)
-            self.tfs[0].text = String(Int(cur_cal!) - Int(food.calories))
-            self.tfs[2].text = String(Float(self.tfs[2].text!)! - food.protein)
-            self.tfs[3].text = String(Float(self.tfs[3].text!)! - food.carbs)
-            self.tfs[4].text = String(Float(self.tfs[4].text!)! - food.fat)
+            self.tfs[0].text = String(Int(cur_cal!) - Int((Float(food.calories) * food_amount) / food.weight))
+            self.tfs[2].text = String(Float(self.tfs[2].text!)! - ((food.protein * food_amount) / food.weight))
+            self.tfs[3].text = String(Float(self.tfs[3].text!)! - ((food.carbs * food_amount) / food.weight))
+            self.tfs[4].text = String(Float(self.tfs[4].text!)! - ((food.fat * food_amount) / food.weight))
             if let changing_recipe = RecipeStatsViewController.recipe {
                 changing_recipe.calories = Int32(self.tfs[0].text!)!
                 changing_recipe.protein = Float(self.tfs[2].text!)!
                 changing_recipe.carbs = Float(self.tfs[3].text!)!
                 changing_recipe.fat = Float(self.tfs[4].text!)!
                 changing_recipe.cps = Float(changing_recipe.calories) / Float(changing_recipe.servings)
-                let ingredients = changing_recipe.mutableSetValue(forKeyPath: "ingredients")
-                ingredients.remove(food)
+                let ingredients = changing_recipe.mutableSetValue(forKeyPath: "recipeingredients")
+                ingredients.remove(recp_ingrd)
                 do {
                     try managedContext.save()
                 } catch {

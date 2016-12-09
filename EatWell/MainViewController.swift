@@ -10,7 +10,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    let items = ["Plan", "Recipe", "Food"]
+    let items = ["Plan", "Meal", "Food"]
     var addView = UIView()
     
     override func viewDidLoad() {

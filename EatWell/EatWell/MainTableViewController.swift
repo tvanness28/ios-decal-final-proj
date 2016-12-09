@@ -12,7 +12,7 @@ import CoreData
 
 class MainTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var items = ["Plan", "Recipe", "Food"]
+    var items = ["Plan", "Meal", "Food"]
     var tableView: UITableView = UITableView()
     var addView = UIView()
     var addButton = UIButton()
@@ -215,7 +215,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: MainTableViewCell? = nil
-//        updateData()
+        updateData()
         switch MainTableViewController.segCont_index {
         case 0:
             if (plans.count > 0) {

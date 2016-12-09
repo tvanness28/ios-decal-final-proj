@@ -49,13 +49,24 @@ class PlanStatsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var editNameView = UITextField()
     
-    var mealsView = UILabel()
+    var ingredientsView = UILabel()
     
     var addButton: UIButton!
     
-    var mealsTableView = UITableView()
+    var ingredientsTableView = UITableView()
+    
+    var plan_servs: [PlanServing] = []
     
     var recipes: [Recipe] = []
+    var recipe_amounts: [Float] = []
+    
+    var isEditTapped: Bool = false
+    
+    var init_graph: Bool = true
+    
+    class subclassedUITextField: UITextField {
+        var index: Int!
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,19 +84,20 @@ class PlanStatsViewController: UIViewController, UITableViewDelegate, UITableVie
         findPlan()
         
         setData()
+        init_graph = false
         
         setViews()
         
-        mealsTableView.delegate = self
-        mealsTableView.dataSource = self
-        mealsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        mealsTableView.tableFooterView = UIView()
-        mealsTableView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(mealsTableView)
+        ingredientsTableView.delegate = self
+        ingredientsTableView.dataSource = self
+        ingredientsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        ingredientsTableView.tableFooterView = UIView()
+        ingredientsTableView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(ingredientsTableView)
         
-        mealsTableView.topAnchor.constraint(equalTo: mealsView.bottomAnchor).isActive = true
-        mealsTableView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        mealsTableView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/3).isActive = true
+        ingredientsTableView.topAnchor.constraint(equalTo: ingredientsView.bottomAnchor).isActive = true
+        ingredientsTableView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        ingredientsTableView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/3).isActive = true
         
         if PlanStatsViewController.plan == nil {
             editTapped()
@@ -108,11 +120,24 @@ class PlanStatsViewController: UIViewController, UITableViewDelegate, UITableVie
         setData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
     func searchViewControllerResponse(recipe: Recipe!)
     {
         self.add_recipe = recipe
         if let recipe = self.add_recipe {
             recipes.append(recipe)
+            recipe_amounts.append(recipe.servings)
+            let p_s: PlanServing
+            let appDel = UIApplication.shared.delegate as! AppDelegate
+            let managedContext = appDel.persistentContainer.viewContext
+            let entity = NSEntityDescription.entity(forEntityName: "PlanServing", in: managedContext)
+            p_s = NSManagedObject(entity: entity!, insertInto: managedContext) as! PlanServing
+            p_s.amount = recipe.servings
+            p_s.recipe = recipe
+            plan_servs.append(p_s)
             tfs[0].text = String(Int(tfs[0].text!)! + recipe.calories)
             tfs[2].text = String(Float(tfs[2].text!)! + recipe.protein)
             tfs[3].text = String(Float(tfs[3].text!)! + recipe.carbs)
@@ -120,7 +145,7 @@ class PlanStatsViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         findPlan()
         setData()
-        mealsTableView.reloadData()
+        ingredientsTableView.reloadData()
     }
     
     func searchViewControllerResponse(food: Food!) {
@@ -194,8 +219,14 @@ class PlanStatsViewController: UIViewController, UITableViewDelegate, UITableVie
         if let plan = PlanStatsViewController.plan {
             navigationItem.title = plan.name
             
-            if let recp_meals = plan.meals {
-                recipes = recp_meals.allObjects as! [Recipe]
+            if let plan_servings = plan.planservings {
+                recipes = []
+                recipe_amounts = []
+                plan_servs = plan_servings.allObjects as! [PlanServing]
+                for plan_servs in plan_servs {
+                    recipes.append(plan_servs.recipe!)
+                    recipe_amounts.append(plan_servs.amount)
+                }
             }
             
             tfs[1].isEnabled = false
@@ -208,17 +239,17 @@ class PlanStatsViewController: UIViewController, UITableViewDelegate, UITableVie
             tfs[4].text = String(plan.fat)
         }
         
-        mealsView.text = " Meals"
-        mealsView.font = UIFont.boldSystemFont(ofSize: 18)
-        mealsView.textAlignment = .left
-        mealsView.backgroundColor = UIColor(red:0.63, green:0.45, blue:0.64, alpha:1.0)
-        mealsView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(mealsView)
+        ingredientsView.text = " Meals"
+        ingredientsView.font = UIFont.boldSystemFont(ofSize: 18)
+        ingredientsView.textAlignment = .left
+        ingredientsView.backgroundColor = UIColor(red:0.63, green:0.45, blue:0.64, alpha:1.0)
+        ingredientsView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(ingredientsView)
         
-        mealsView.topAnchor.constraint(equalTo: tfs[4].bottomAnchor, constant: 10).isActive = true
-        mealsView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        mealsView.heightAnchor.constraint(equalToConstant: self.view.frame.height/20).isActive = true
-        mealsView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        ingredientsView.topAnchor.constraint(equalTo: tfs[4].bottomAnchor, constant: 10).isActive = true
+        ingredientsView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        ingredientsView.heightAnchor.constraint(equalToConstant: self.view.frame.height/20).isActive = true
+        ingredientsView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         
         
     }
@@ -256,7 +287,9 @@ class PlanStatsViewController: UIViewController, UITableViewDelegate, UITableVie
             pieChart.usePercentValuesEnabled = true
             pieChart.drawHoleEnabled = false
             pieChart.chartDescription = nil
+            //            if init_graph {
             pieChart.animate(xAxisDuration: 1.5, yAxisDuration: 1.5, easingOption: ChartEasingOption.easeOutExpo)
+            //            }
         }
         
         self.view.addSubview(pieChart)
@@ -293,8 +326,11 @@ class PlanStatsViewController: UIViewController, UITableViewDelegate, UITableVie
         addButton.tag = 3
         self.view.addSubview(addButton)
         
-        addButton.centerYAnchor.constraint(equalTo: mealsView.centerYAnchor).isActive = true
-        addButton.trailingAnchor.constraint(equalTo: mealsView.trailingAnchor, constant: -5).isActive = true
+        addButton.centerYAnchor.constraint(equalTo: ingredientsView.centerYAnchor).isActive = true
+        addButton.trailingAnchor.constraint(equalTo: ingredientsView.trailingAnchor, constant: -5).isActive = true
+        
+        isEditTapped = true
+        ingredientsTableView.reloadData()
     }
     
     func addPressed() {
@@ -319,7 +355,7 @@ class PlanStatsViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
         
-        if editNameView.text == "" || recipes.count == 0 {
+        if editNameView.text == "" || plan_servs.count == 0 {
             success = false
         }
         
@@ -334,15 +370,19 @@ class PlanStatsViewController: UIViewController, UITableViewDelegate, UITableVie
                 changing_plan = PlanStatsViewController.plan!
             }
             changing_plan.name = editNameView.text
-            changing_plan.calories = Int32(vals[0]) ?? 0
+            changing_plan.calories = Int32(vals[0])  ?? 0
             changing_plan.days = Int32(vals[1]) ?? 1
             changing_plan.protein = Float(vals[2]) ?? 0
             changing_plan.carbs = Float(vals[3]) ?? 0
             changing_plan.fat = Float(vals[4]) ?? 0
             changing_plan.cpd = Float(changing_plan.calories) / Float(changing_plan.days)
-            let meals = changing_plan.mutableSetValue(forKey: "meals")
-            for recipe in recipes {
-                meals.add(recipe)
+            let ingredients = changing_plan.mutableSetValue(forKey: "planservings")
+            print(recipes.count)
+            print(plan_servs.count)
+            for i in 0...recipes.count-1 {
+                plan_servs[i].amount = recipe_amounts[i]
+                plan_servs[i].recipe = recipes[i]
+                ingredients.add(plan_servs[i])
             }
             do {
                 try managedContext.save()
@@ -358,14 +398,16 @@ class PlanStatsViewController: UIViewController, UITableViewDelegate, UITableVie
             
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
             
-            if let viewWithTag = mealsView.viewWithTag(3) {
+            if let viewWithTag = ingredientsView.viewWithTag(3) {
                 viewWithTag.removeFromSuperview()
             }
             
+            isEditTapped = false
             findPlan()
             
             setData()
             setViews()
+            ingredientsTableView.reloadData()
         }
         
     }
@@ -382,8 +424,84 @@ class PlanStatsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        
+        if isEditTapped {
+            if let viewWithTag = cell.viewWithTag(6) {
+                viewWithTag.removeFromSuperview()
+            }
+            
+            let amountTF = subclassedUITextField()
+            amountTF.placeholder = "0.0"
+            amountTF.tag = 5
+            if indexPath.row < recipe_amounts.count {
+                amountTF.text = String(format: "%.1f", recipe_amounts[indexPath.row])
+            }
+            let gramLabel = UILabel()
+            gramLabel.text = " servings"
+            cell.addSubview(gramLabel)
+            amountTF.rightView = gramLabel
+            amountTF.textAlignment = .right
+            amountTF.rightViewMode = UITextFieldViewMode.always
+            amountTF.borderStyle = UITextBorderStyle.roundedRect
+            amountTF.adjustsFontSizeToFitWidth = true
+            amountTF.layer.borderWidth = 1
+            amountTF.layer.borderColor = UIColor(red:0.63, green:0.45, blue:0.64, alpha:1.0).cgColor
+            amountTF.layer.cornerRadius = 5
+            amountTF.keyboardType = UIKeyboardType.decimalPad
+            amountTF.addTarget(self, action: #selector(amountChanged), for: .editingDidEnd)
+            amountTF.index = indexPath.row
+            amountTF.translatesAutoresizingMaskIntoConstraints = false
+            cell.addSubview(amountTF)
+            
+            amountTF.trailingAnchor.constraint(equalTo: cell.trailingAnchor, constant: -5).isActive = true
+            amountTF.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
+        } else {
+            if let viewWithTag = cell.viewWithTag(5) {
+                viewWithTag.removeFromSuperview()
+            }
+            
+            let amount = UILabel()
+            amount.text = String(format: "%.1f servings", recipe_amounts[indexPath.row])
+            amount.tag = 6
+            amount.translatesAutoresizingMaskIntoConstraints = false
+            cell.addSubview(amount)
+            
+            amount.trailingAnchor.constraint(equalTo: cell.trailingAnchor, constant: -5).isActive = true
+            amount.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
+        }
+        
         cell.textLabel?.text = recipes[indexPath.row].name
+        
         return cell
+    }
+    
+    func amountChanged(sender: subclassedUITextField) {
+        if let new_amount = sender.text {
+            recipe_amounts[(sender.index)!] = Float(new_amount)!
+            
+            
+            var cur_cals: Float = 0.0
+            var cur_prot: Float = 0.0
+            var cur_carbs: Float = 0.0
+            var cur_fat: Float = 0.0
+            for i in 0...recipes.count - 1 {
+                let recipe = recipes[i]
+                let recipe_amount = recipe_amounts[i]
+                cur_cals += (Float(recipe.calories) * recipe_amount) / recipe.servings
+                cur_prot += (recipe.protein * recipe_amount) / recipe.servings
+                cur_carbs += (recipe.carbs * recipe_amount) / recipe.servings
+                cur_fat += (recipe.fat * recipe_amount) / recipe.servings
+            }
+            tfs[0].text = String(format: "%.0f", cur_cals)
+            tfs[2].text = String(format: "%.1f", cur_prot)
+            tfs[3].text = String(format: "%.1f", cur_carbs)
+            tfs[4].text = String(format: "%.1f", cur_fat)
+            
+            setData()
+        }
+        sender.endEditing(true)
     }
     
     
@@ -397,19 +515,23 @@ class PlanStatsViewController: UIViewController, UITableViewDelegate, UITableVie
             let managedContext = appDel.persistentContainer.viewContext
             let recipe = self.recipes[indexPath.row]
             self.recipes.remove(at: indexPath.row)
+            let recipe_amount = self.recipe_amounts[indexPath.row]
+            self.recipe_amounts.remove(at: indexPath.row)
+            let recp_ingrd = self.plan_servs[indexPath.row]
+            self.plan_servs.remove(at: indexPath.row)
             let cur_cal = Int(self.tfs[0].text!)
-            self.tfs[0].text = String(Int(cur_cal!) - Int(recipe.calories))
-            self.tfs[2].text = String(Float(self.tfs[2].text!)! - recipe.protein)
-            self.tfs[3].text = String(Float(self.tfs[3].text!)! - recipe.carbs)
-            self.tfs[4].text = String(Float(self.tfs[4].text!)! - recipe.fat)
+            self.tfs[0].text = String(Int(cur_cal!) - Int((Float(recipe.calories) * recipe_amount) / recipe.servings))
+            self.tfs[2].text = String(Float(self.tfs[2].text!)! - ((recipe.protein * recipe_amount) / recipe.servings))
+            self.tfs[3].text = String(Float(self.tfs[3].text!)! - ((recipe.carbs * recipe_amount) / recipe.servings))
+            self.tfs[4].text = String(Float(self.tfs[4].text!)! - ((recipe.fat * recipe_amount) / recipe.servings))
             if let changing_plan = PlanStatsViewController.plan {
                 changing_plan.calories = Int32(self.tfs[0].text!)!
                 changing_plan.protein = Float(self.tfs[2].text!)!
                 changing_plan.carbs = Float(self.tfs[3].text!)!
                 changing_plan.fat = Float(self.tfs[4].text!)!
                 changing_plan.cpd = Float(changing_plan.calories) / Float(changing_plan.days)
-                let meals = changing_plan.mutableSetValue(forKeyPath: "meals")
-                meals.remove(recipe)
+                let ingredients = changing_plan.mutableSetValue(forKeyPath: "planservings")
+                ingredients.remove(recp_ingrd)
                 do {
                     try managedContext.save()
                 } catch {
@@ -417,7 +539,7 @@ class PlanStatsViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             }
             self.findPlan()
-            self.mealsTableView.reloadData()
+            self.ingredientsTableView.reloadData()
         }
         delete.backgroundColor = UIColor.red
         return [delete]
